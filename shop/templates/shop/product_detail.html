@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }} - ElectroShop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-primary mb-4 box-shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">⚡ ElectroShop</a>
+        </div>
+    </nav>
+
+    <div class="container bg-white p-5 rounded shadow-sm">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name }}" style="max-height: 400px;">
+                {% else %}
+                    <div class="bg-secondary d-flex align-items-center justify-content-center text-white rounded" style="height: 400px;">Немає фото</div>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <h2>{{ product.brand }} {{ product.name }}</h2>
+                <h3 class="text-danger fw-bold">{{ product.price }} {{ product.currency }}</h3>
+                <p class="mt-4">{{ product.description }}</p>
+
+                <ul class="list-group mb-4">
+                    {% if product.cpu %}<li class="list-group-item"><strong>Процесор:</strong> {{ product.cpu }}</li>{% endif %}
+                    {% if product.ram %}<li class="list-group-item"><strong>ОЗП:</strong> {{ product.ram }}</li>{% endif %}
+                    {% if product.storage %}<li class="list-group-item"><strong>Пам'ять:</strong> {{ product.storage }}</li>{% endif %}
+                    <li class="list-group-item text-success"><strong>На складі:</strong> {{ product.quantity }} шт.</li>
+                </ul>
+
+                <a href="/buy/{{ product.id }}/" class="btn btn-success btn-lg">🛒 Купити зараз</a>
+                <a href="/" class="btn btn-outline-secondary btn-lg ms-2">Назад</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
